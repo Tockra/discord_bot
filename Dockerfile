@@ -1,6 +1,6 @@
 FROM alpine
 
-RUN apk add docker rust openrc py-pip python-dev libffi-dev openssl-dev gcc libc-dev make bash cargo openssl libsodium opus pkgconfig
+RUN apk add docker rust openrc py-pip python-dev libffi-dev openssl-dev gcc libc-dev make bash cargo
 RUN rc-update add docker boot
 
 RUN pip install --upgrade pip
