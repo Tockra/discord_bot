@@ -1,0 +1,10 @@
+version: "3"
+services:
+   ttannert:
+      build: .
+      restart: always
+      environment:
+      - TOKEN=
+      volumes:
+         - /var/run/docker.sock:/var/run/docker.sock
+         - /home/titan/minecraft-tim/:/home/titan/minecraft-tim
