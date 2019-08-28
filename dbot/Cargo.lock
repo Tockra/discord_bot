@@ -223,6 +223,7 @@ dependencies = [
 name = "dbot"
 version = "0.1.0"
 dependencies = [
+ "chrono 0.4.7 (registry+https://github.com/rust-lang/crates.io-index)",
  "serenity 0.6.4 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
