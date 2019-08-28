@@ -11,4 +11,4 @@ COPY dbot /home/titan/dbot
 WORKDIR /home/titan/dbot/
 RUN cargo build --release
 
-ENTRYPOINT ["bash","/home/titan/dbot/target/release/dbot","$TOKEN"]
+ENTRYPOINT ["bash","/home/titan/dbot/target/release/dbot"]
