@@ -1,3 +1,6 @@
+
+use std::process::Command;
+
 use serenity::client::Client;
 use serenity::model::channel::Message;
 use serenity::prelude::{EventHandler, Context};
@@ -24,9 +27,12 @@ impl EventHandler for Handler {}
 
 fn main() {
     // Login with a bot token from the environment
-    let mut client = Client::new(&env::var("TOKEN").expect("token"), Handler)
+    let token = env::var("TOKEN").expect("token");
+    println!("T: {}", token);
+    let mut client = Client::new(&token, Handler)
         .expect("Error creating client");
-        
+
+
     client.with_framework(StandardFramework::new()
         .configure(|c| c.prefix("~")) // set the bot's prefix to "~"
         .group(&GENERAL_GROUP));
@@ -40,6 +46,9 @@ fn main() {
 #[command]
 fn ping(ctx: &mut Context, msg: &Message) -> CommandResult {
     msg.reply(ctx, "Pong!")?;
-
+    let mut c = Command::new("docker");
+    let c = c.arg("ps").arg("-a");
+    let output = String::from_utf8(c.output().unwrap().stdout).unwrap();
+    println!("{}", output);
     Ok(())
 }
