@@ -1,4 +1,3 @@
-
 use std::process::Command;
 use std::{time,thread};
 use chrono::prelude::*;
@@ -18,7 +17,7 @@ use serenity::framework::standard::{
 group!({
     name: "general",
     options: {},
-    commands: [minecraft],
+    commands: [minecraft,help],
 });
 
 use std::env;
@@ -51,7 +50,7 @@ fn main() {
 
             if output.contains("minecraft") && local.time().format("%H").to_string() == "04" && local.time().format("%M").to_string() == "00" {
                 let mut c = Command::new("docker");
-                c.arg("-f /home/titan/minecraft-tim/docker-compose.yml").arg("down").output()
+                c.arg("-f").arg("/home/titan/minecraft-tim/docker-compose.yml").arg("down").output()
                     .expect("Fehler beim Stoppen des Minecraft-Servers!");
             }
             thread::sleep(time::Duration::from_secs(30));
@@ -75,11 +74,18 @@ fn minecraft(ctx: &mut Context, msg: &Message) -> CommandResult {
     } else {
         msg.reply(ctx, "Der Minecraft-Server wird gestartet, bitte warte einen Augenblick! ")?;
         let mut c = Command::new("docker-compose");
-        c.arg("-f /home/titan/minecraft-tim/docker-compose.yml").arg("up").arg("-d").output()
+        c.arg("-f").arg("/home/titan/minecraft-tim/docker-compose.yml").arg("up").arg("-d").output()
             .expect("Fehler beim Starten des Minecraft-Servers!");
-        println!("Minecraft-Server gestartet!");
+        println!("Minecraft-Server gestartet");
     }
     
     
+    Ok(())
+}
+
+#[command]
+fn help(ctx: &mut Context, msg: &Message) -> CommandResult {
+    msg.reply(ctx, "Gebe !minecraft ein um den Minecraft-Server zu starten. Der Server wird jede Nacht um 4 Uhr ausgeschaltet und muss anschließend erneut gestartet werden.")?;
+
     Ok(())
 }
