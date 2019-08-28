@@ -9,5 +9,5 @@ RUN pip install docker-compose
 
 COPY ./dbot /home/titan/dbot/
 WORKDIR /home/titan/dbot/
-cargo build --release
+RUN cargo build --release
 ENTRYPOINT ["/home/titan/dbot/target/release/dbot"]
