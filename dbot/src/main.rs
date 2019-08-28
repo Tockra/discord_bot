@@ -49,6 +49,6 @@ fn ping(ctx: &mut Context, msg: &Message) -> CommandResult {
     let mut c = Command::new("docker");
     let c = c.arg("ps").arg("-a");
     let output = String::from_utf8(c.output().unwrap().stdout).unwrap();
-    println!("{}", output);
+    println!("{}", output.contains("minecraft"));
     Ok(())
 }
