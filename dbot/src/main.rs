@@ -17,7 +17,7 @@ use serenity::framework::standard::{
 group!({
     name: "general",
     options: {},
-    commands: [minecraft,help],
+    commands: [minecraft,help, hilfe],
 });
 
 use std::env;
@@ -85,6 +85,15 @@ fn minecraft(ctx: &mut Context, msg: &Message) -> CommandResult {
 
 #[command]
 fn help(ctx: &mut Context, msg: &Message) -> CommandResult {
+    help_main(ctx,msg)
+}
+
+#[command]
+fn hilfe(ctx: &mut Context, msg: &Message) -> CommandResult {
+    help_main(ctx, msg)
+}
+
+fn help_main(ctx: &mut Context, msg: &Message) -> CommandResult {
     msg.reply(ctx, "Gebe !minecraft ein um den Minecraft-Server zu starten. Der Server wird jede Nacht um 4 Uhr ausgeschaltet und muss anschließend erneut gestartet werden.")?;
 
     Ok(())
