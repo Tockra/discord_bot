@@ -49,7 +49,7 @@ fn main() {
             let local: DateTime<Local> = Local::now();
 
             if output.contains("minecraft") && local.time().format("%H").to_string() == "04" && local.time().format("%M").to_string() == "00" {
-                let mut c = Command::new("docker");
+                let mut c = Command::new("docker-compose");
                 c.arg("-f").arg("/home/titan/minecraft-tim/docker-compose.yml").arg("down").output()
                     .expect("Fehler beim Stoppen des Minecraft-Servers!");
             }
