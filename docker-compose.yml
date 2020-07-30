@@ -5,6 +5,7 @@ services:
       restart: always
       environment:
       - TOKEN=
+      - SERVER_IP=
       volumes:
          - /var/run/docker.sock:/var/run/docker.sock
          - /home/titan/minecraft-tim/:/home/titan/minecraft-tim

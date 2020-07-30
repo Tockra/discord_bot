@@ -1,6 +1,6 @@
 FROM alpine
 
-RUN apk add docker openrc py-pip python-dev libffi-dev openssl-dev gcc libc-dev make rust cargo
+RUN apk --update --no-cache add docker openrc py-pip python3-dev libffi-dev openssl-dev gcc libc-dev make rust cargo
 RUN rc-update add docker boot
 
 RUN pip install --upgrade pip
